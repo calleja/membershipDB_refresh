@@ -92,7 +92,7 @@ FROM civicrm_activity activity_civireport
   
 
 WHERE activity_civireport.is_test = 0 AND
-                                activity_ciaddvireport.is_deleted = 0 AND
+                                activity_civireport.is_deleted = 0 AND
                                 activity_civireport.is_current_revision = 1 AND ( activity_civireport.activity_date_time >= 20221128000000) AND ( activity_civireport.activity_date_time <= 20251127235959) AND ( activity_civireport.activity_type_id IN (35, 36, 7) );
 
 
