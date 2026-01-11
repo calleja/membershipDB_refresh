@@ -10,3 +10,5 @@ ETL COMPONENTS
 
 PROJECT PLAN (input for Copilot Plan agent)
 high level plan prompt: create a workflow or set of tasks that update the membership_db with data from one query to a production database. Each database resides in a separate digitial ocean droplet. Both databases are mysql. Consider the following tech stack: Digial Ocean droplet for hosting, github actions for scheduling and execution, python for project management and scripting, mysql as the database. If possible, the python portion should be managed as a python project using uv. Currently the query is in the form of an sql file. The workflow should include testing to ensure a sanity check on the result set from the query. Historical result sets should be used to formulate the tests.
+
+I have several questions on the plan: I prefer to inject the result set into the membership_db, instead of saving as csv. So I'd like to swap out the 'csv' step. what are the requirements and dependencies to set up a self-hosted runner as opposed to one via github? What would need to be installed on the droplet, if anything?

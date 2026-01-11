@@ -1,0 +1,52 @@
+GitHub Copilot
+
+Use a modern Python in an isolated venv and run the script with that interpreter. Below are concise Ubuntu commands (use in your runner project dir). If you lack sudo or are on a different distro, use pyenv instead.
+
+1) Install a modern Python (Ubuntu example: 3.11)
+```bash
+sudo apt update
+sudo apt install -y software-properties-common
+sudo add-apt-repository -y ppa:deadsnakes/ppa
+sudo apt update
+sudo apt install -y python3.12 python3.12-venv python3.12-distutils build-essential
+```
+
+2) Create and activate a virtual environment in the project
+```bash
+cd /home/candela/pCloudDrive/pCloud\ Backup/mofongo-HP-EliteBook-840-G8-Notebook-PC/Documents/ghfc/membershipReportsCIVI/membershipDB_refresh
+python3.12 -m venv .venv (I used python3.12 -m venv .venv & source .venv/bin/activate)
+# Activate interactively
+source .venv/bin/activate
+# upgrade pip/tools
+python -m pip install --upgrade pip setuptools wheel
+```
+
+3) Install runtime deps and run the connection test
+```bash
+pip install mysql-connector-python
+python src/uv/check_connection.py <- I don't have this script
+```
+
+4) Non-interactive / CI-friendly single-line (no activate)
+```bash
+# from project root
+.venv/bin/python src/uv/check_connection.py
+```
+
+5) Optional: make script executable and run
+```bash
+chmod +x src/uv/check_connection.py
+.venv/bin/python src/uv/check_connection.py
+```
+
+If you cannot install system Python, use pyenv:
+```bash
+# install pyenv (curl installer) then:
+pyenv install 3.11.6
+pyenv local 3.11.6
+python -m venv .venv
+.venv/bin/python -m pip install --upgrade pip
+.venv/bin/python src/uv/check_connection.py
+```
+
+Use the non-interactive `.venv/bin/python ...` invocation in GitHub Actions or cron to avoid relying on shell activation.
